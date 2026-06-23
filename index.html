@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Happy Birthday Anna</title>
+<title>Happy Birthday Anna ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -16,89 +19,120 @@ padding:0;
 box-sizing:border-box;
 }
 
-body{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:#050816;
-overflow:hidden;
-font-family:Arial,sans-serif;
-position:relative;
+html{
+scroll-behavior:smooth;
 }
 
-/* Background */
+body{
+
+font-family:'Poppins',sans-serif;
+
+background:#050816;
+
+overflow-x:hidden;
+
+}
+
+/* =========================
+   SECTION COMMON
+========================= */
+
+section{
+
+width:100%;
+
+position:relative;
+
+}
+
+/* =========================
+   HERO SECTION
+========================= */
 
 .hero{
-position:absolute;
-width:100%;
-height:100%;
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
 background:
 linear-gradient(
-rgba(0,0,0,.45),
-rgba(0,0,0,.55)
+135deg,
+#020617,
+#0f172a,
+#1e293b
 );
+
+overflow:hidden;
+
 }
 
-/* Card */
-
-.card{
-
-position:relative;
-z-index:2;
+.hero-card{
 
 width:90%;
-max-width:850px;
+
+max-width:900px;
 
 padding:60px 30px;
 
 text-align:center;
 
-background:rgba(255,255,255,.12);
+background:
+rgba(255,255,255,.08);
 
-backdrop-filter:blur(15px);
+backdrop-filter:blur(18px);
 
-border:1px solid rgba(255,255,255,.2);
+border-radius:35px;
 
-border-radius:30px;
+border:
+1px solid rgba(255,255,255,.15);
+
+box-shadow:
+0 15px 50px rgba(0,0,0,.35);
+
+z-index:2;
+
+}
+
+.hero-title{
+
+font-family:
+'Cormorant Garamond',serif;
+
+font-size:90px;
 
 color:white;
 
 }
 
-/* Title */
+.hero-name{
 
-.title{
+font-family:
+'Alex Brush',cursive;
 
-font-family:'Cormorant Garamond',serif;
+font-size:120px;
 
-font-size:80px;
-
-}
-
-.name{
-
-font-family:'Alex Brush',cursive;
-
-font-size:110px;
-
-color:#3b82f6;
+color:#60a5fa;
 
 margin-top:10px;
 
 }
 
-.subtitle{
-
-font-size:24px;
+.hero-sub{
 
 margin-top:20px;
 
+font-size:24px;
+
+color:#e2e8f0;
+
 }
 
-/* Button */
-
-.btn{
+.open-btn{
 
 margin-top:35px;
 
@@ -108,9 +142,11 @@ border:none;
 
 border-radius:50px;
 
+cursor:pointer;
+
 font-size:20px;
 
-cursor:pointer;
+font-weight:600;
 
 color:white;
 
@@ -123,29 +159,49 @@ linear-gradient(
 
 }
 
-.btn:hover{
+.open-btn:hover{
 
-transform:scale(1.05);
+transform:translateY(-3px);
 
 }
 
-/* Mobile */
+/* =========================
+   FIREWORKS
+========================= */
+
+#heroCanvas{
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+
+}
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:768px){
 
-.title{
-font-size:50px;
+.hero-title{
+font-size:55px;
 }
 
-.name{
-font-size:70px;
+.hero-name{
+font-size:75px;
 }
 
-.subtitle{
+.hero-sub{
 font-size:18px;
 }
 
-.btn{
+.open-btn{
 font-size:16px;
 padding:15px 30px;
 }
@@ -153,36 +209,49 @@ padding:15px 30px;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="hero"></div>
+<!-- HERO SECTION -->
 
-<div class="card">
+<section class="hero" id="hero">
 
-<h1 class="title">
+<canvas id="heroCanvas"></canvas>
+
+<div class="hero-card">
+
+<div class="hero-title">
 Happy Birthday
-</h1>
-
-<div class="name">
-Anna 💙
 </div>
 
-<div class="subtitle">
+<div class="hero-name">
+Anna ❤️
+</div>
+
+<div class="hero-sub">
 A beautiful surprise is waiting for you 🎁
 </div>
 
-<button class="btn">
+<button
+class="open-btn"
+onclick="openMemories()">
+
 🎁 Open Surprise
+
 </button>
 
 </div>
-  /* =========================
-   MEMORIES SECTION
-========================= */
 
-#memories{
+</section>
+<!-- =========================
+     MEMORIES SECTION
+========================= -->
+
+<style>
+
+.memories{
 
 min-height:100vh;
 
@@ -197,23 +266,39 @@ linear-gradient(
 );
 
 display:flex;
+
 justify-content:center;
+
 align-items:center;
 
 }
 
-.memories-container{
+.memories-card{
 
 width:95%;
+
 max-width:1200px;
 
+padding:35px;
+
+background:
+rgba(255,255,255,.5);
+
+backdrop-filter:blur(18px);
+
+border-radius:35px;
+
 text-align:center;
+
+box-shadow:
+0 15px 40px rgba(0,0,0,.08);
 
 }
 
 .memories-title{
 
-font-family:'Cormorant Garamond',serif;
+font-family:
+'Cormorant Garamond',serif;
 
 font-size:70px;
 
@@ -223,42 +308,46 @@ color:#1e3a8a;
 
 .memories-name{
 
-font-family:'Alex Brush',cursive;
+font-family:
+'Alex Brush',cursive;
 
 font-size:90px;
 
-color:#3b82f6;
-
-margin-top:5px;
+color:#2563eb;
 
 }
 
-.memories-subtitle{
+.memories-sub{
 
 font-size:22px;
 
 color:#475569;
 
-margin-top:10px;
+margin-top:15px;
+
 margin-bottom:30px;
 
 }
 
-.slideshow{
+.slide-wrap{
 
 display:flex;
+
 justify-content:center;
+
 align-items:center;
+
 gap:20px;
 
 flex-wrap:wrap;
 
 }
 
-.slide-img{
+.slide{
 
 width:100%;
-max-width:700px;
+
+max-width:750px;
 
 border-radius:25px;
 
@@ -266,26 +355,6 @@ border:5px solid white;
 
 box-shadow:
 0 10px 30px rgba(0,0,0,.15);
-
-}
-
-.nav-btn{
-
-width:60px;
-height:60px;
-
-border:none;
-
-border-radius:50%;
-
-font-size:28px;
-
-cursor:pointer;
-
-background:white;
-
-box-shadow:
-0 5px 15px rgba(0,0,0,.1);
 
 }
 
@@ -311,7 +380,28 @@ color:#64748b;
 
 }
 
-.next-btn{
+.nav-btn{
+
+width:60px;
+
+height:60px;
+
+border:none;
+
+border-radius:50%;
+
+font-size:28px;
+
+cursor:pointer;
+
+background:white;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,.1);
+
+}
+
+.next-letter{
 
 margin-top:30px;
 
@@ -338,8 +428,6 @@ linear-gradient(
 
 }
 
-/* Mobile */
-
 @media(max-width:768px){
 
 .memories-title{
@@ -350,47 +438,59 @@ font-size:50px;
 font-size:70px;
 }
 
-.memories-subtitle{
+.memories-sub{
 font-size:18px;
 }
 
-.slide-img{
+.caption{
+font-size:22px;
+}
+
+.slide{
 max-width:100%;
 }
 
 }
-  <section id="memories">
 
-<div class="memories-container">
+</style>
 
-<h1 class="memories-title">
+<section
+class="memories"
+id="memories">
+
+<div class="memories-card">
+
+<div class="memories-title">
 Beautiful Memories
-</h1>
-
-<div class="memories-name">
-Anna 💙
 </div>
 
-<div class="memories-subtitle">
+<div class="memories-name">
+Anna ❤️
+</div>
+
+<div class="memories-sub">
 Every picture holds a beautiful memory ✨
 </div>
 
-<div class="slideshow">
+<div class="slide-wrap">
 
-<button class="nav-btn"
+<button
+class="nav-btn"
 onclick="prevImage()">
+
 ❮
+
 </button>
 
 <div>
 
 <img
-id="memoryImage"
-class="slide-img"
+id="slideImage"
+class="slide"
 src="img1.jpeg">
 
 <div
-id="memoryCaption"
+id="slideCaption"
 class="caption">
 
 👶 Childhood Pic
@@ -398,7 +498,7 @@ class="caption">
 </div>
 
 <div
-id="memoryCounter"
+id="slideCounter"
 class="counter">
 
 1 / 13
@@ -407,23 +507,29 @@ class="counter">
 
 </div>
 
-<button class="nav-btn"
+<button
+class="nav-btn"
 onclick="nextImage()">
+
 ❯
+
 </button>
 
 </div>
 
-<button class="next-btn">
+<button
+class="next-letter"
+onclick="openLetter()">
 
-💌 Next
+💌 Read Letter
 
 </button>
 
 </div>
 
 </section>
-  <script>
+
+<script>
 
 const images=[
 
@@ -463,16 +569,13 @@ const captions=[
 
 let current=0;
 
-function updateImage(){
+function openMemories(){
 
-document.getElementById("memoryImage").src=
-images[current];
-
-document.getElementById("memoryCaption").innerHTML=
-captions[current];
-
-document.getElementById("memoryCounter").innerHTML=
-(current+1)+" / "+images.length;
+document
+.getElementById("memories")
+.scrollIntoView({
+behavior:"smooth"
+});
 
 }
 
@@ -486,7 +589,7 @@ current=0;
 
 }
 
-updateImage();
+updateSlide();
 
 }
 
@@ -496,99 +599,227 @@ current--;
 
 if(current<0){
 
-current=images.length-1;
+current=
+images.length-1;
 
 }
 
-updateImage();
+updateSlide();
 
 }
 
-setInterval(nextImage,5000);
+function updateSlide(){
+
+document
+.getElementById("slideImage")
+.src=
+images[current];
+
+document
+.getElementById("slideCaption")
+.innerHTML=
+captions[current];
+
+document
+.getElementById("slideCounter")
+.innerHTML=
+(current+1)+
+" / "+
+images.length;
+
+}
+
+setInterval(
+nextImage,
+5000
+);
 
 </script>
-  <section id="letter" style="
+<!-- =========================
+     LETTER SECTION
+========================= -->
+
+<style>
+
+.letter{
+
 min-height:100vh;
+
+padding:80px 20px;
+
+background:
+linear-gradient(
+135deg,
+#c7d2fe,
+#dbeafe,
+#e0f2fe,
+#f8fafc
+);
+
 display:flex;
 justify-content:center;
 align-items:center;
-padding:40px 20px;
-background:linear-gradient(135deg,#c7d2fe,#dbeafe,#e0f2fe,#f8fafc);
+
 position:relative;
-">
+
+}
+
+.letter-card{
+
+width:95%;
+max-width:1000px;
+
+padding:50px 35px;
+
+background:
+rgba(255,255,255,.5);
+
+backdrop-filter:blur(20px);
+
+border-radius:35px;
+
+text-align:center;
+
+box-shadow:
+0 15px 40px rgba(0,0,0,.08);
+
+position:relative;
+z-index:2;
+
+}
+
+.letter-title{
+
+font-family:
+'Cormorant Garamond',serif;
+
+font-size:70px;
+
+color:#1e3a8a;
+
+}
+
+.letter-name{
+
+font-family:
+'Alex Brush',cursive;
+
+font-size:90px;
+
+color:#2563eb;
+
+}
+
+.message{
+
+margin-top:30px;
+
+font-size:22px;
+
+line-height:2;
+
+color:#475569;
+
+white-space:pre-line;
+
+}
+
+.final{
+
+margin-top:30px;
+
+font-size:35px;
+
+font-weight:600;
+
+color:#2563eb;
+
+}
+
+#fireworks{
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+
+}
+
+@media(max-width:768px){
+
+.letter-title{
+font-size:50px;
+}
+
+.letter-name{
+font-size:70px;
+}
+
+.message{
+font-size:18px;
+line-height:1.8;
+}
+
+.final{
+font-size:28px;
+}
+
+}
+
+</style>
+
+<section
+class="letter"
+id="letter">
 
 <canvas id="fireworks"></canvas>
 
-<div style="
-max-width:1000px;
-width:95%;
-padding:50px 30px;
-text-align:center;
-background:rgba(255,255,255,.45);
-backdrop-filter:blur(20px);
-border-radius:30px;
-box-shadow:0 15px 40px rgba(0,0,0,.1);
-z-index:2;
-">
+<div class="letter-card">
 
-<h1 style="
-font-family:'Cormorant Garamond',serif;
-font-size:70px;
-color:#1e3a8a;
-">
+<div class="letter-title">
 Happy Birthday
-</h1>
+</div>
 
-<div style="
-font-family:'Alex Brush',cursive;
-font-size:90px;
-color:#2563eb;
-">
+<div class="letter-name">
 Anna ❤️
 </div>
 
-<div style="
-margin-top:25px;
-font-size:22px;
-line-height:2;
-color:#475569;
-white-space:pre-line;
-">
+<div class="message">
 
-Anna👑,
+Anna 👑,
 
-My big SUPPORTER ❤️
+My biggest supporter ❤️
 
-I'm so blessed to have a brother like you.
+I am truly blessed to have a brother like you.
 
-You're not only my brother,
-you're also my best friend.
+You are not only my brother,
+you are also my best friend.
 
-No matter how far life takes you,
+No matter how far life takes us,
 you will always be close to my heart.
 
-I truly miss you every single day.
+I miss you every single day.
 
 The memories we created together
 will stay in my heart forever.
 
-I am proud to have a brother like you ❤️🫂
-
 Your happiness is my happiness.
 Your success is my success.
 
-Happy Birthday Anna 👑 ❤️
+I am proud to have a brother like you ❤️🫂
+
+Happy Birthday Anna 👑❤️
 
 — Your Sai
 
 </div>
 
-<div style="
-margin-top:30px;
-font-size:35px;
-font-weight:600;
-color:#2563eb;
-">
+<div class="final">
 
 🎂 Happy Birthday Anna 🎂
 
@@ -597,115 +828,94 @@ color:#2563eb;
 </div>
 
 </section>
-  <script>
 
-const canvas=document.getElementById("fireworks");
-const ctx=canvas.getContext("2d");
+<audio id="bgMusic" loop>
+<source src="song1.mp3" type="audio/mpeg">
+</audio>
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+<script>
 
-window.addEventListener("resize",()=>{
+/* Open Letter */
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+function openLetter(){
+
+document
+.getElementById("letter")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+/* Music */
+
+const music=
+document.getElementById("bgMusic");
+
+document
+.querySelector(".open-btn")
+.addEventListener("click",()=>{
+
+music.play().catch(()=>{});
 
 });
 
-let fireworks=[];
+/* Fireworks */
+
+const canvas=
+document.getElementById("fireworks");
+
+const ctx=
+canvas.getContext("2d");
+
+canvas.width=
+window.innerWidth;
+
+canvas.height=
+window.innerHeight;
+
+window.addEventListener(
+"resize",
+()=>{
+
+canvas.width=
+window.innerWidth;
+
+canvas.height=
+window.innerHeight;
+
+});
+
 let particles=[];
 
-class Firework{
+function createFirework(){
 
-constructor(){
+let x=
+Math.random()*canvas.width;
 
-this.x=Math.random()*canvas.width;
-this.y=canvas.height;
+let y=
+Math.random()*
+(canvas.height/2);
 
-this.targetY=Math.random()*(canvas.height/2);
+for(let i=0;i<80;i++){
 
-this.speed=7;
+particles.push({
 
-this.color=`hsl(${Math.random()*360},100%,60%)`;
+x:x,
+y:y,
 
-}
+dx:
+(Math.random()-0.5)*8,
 
-update(){
+dy:
+(Math.random()-0.5)*8,
 
-this.y-=this.speed;
+life:100,
 
-if(this.y<=this.targetY){
+color:
+`hsl(${Math.random()*360},100%,60%)`
 
-for(let i=0;i<120;i++){
-
-particles.push(
-new Particle(
-this.x,
-this.y,
-this.color
-)
-);
-
-}
-
-return false;
-
-}
-
-return true;
-
-}
-
-draw(){
-
-ctx.beginPath();
-ctx.arc(this.x,this.y,4,0,Math.PI*2);
-ctx.fillStyle=this.color;
-ctx.fill();
-
-}
-
-}
-
-class Particle{
-
-constructor(x,y,color){
-
-this.x=x;
-this.y=y;
-
-this.color=color;
-
-this.angle=Math.random()*Math.PI*2;
-this.speed=Math.random()*8+2;
-
-this.life=100;
-
-}
-
-update(){
-
-this.x+=Math.cos(this.angle)*this.speed;
-
-this.y+=Math.sin(this.angle)*this.speed;
-
-this.speed*=0.97;
-
-this.life--;
-
-return this.life>0;
-
-}
-
-draw(){
-
-ctx.beginPath();
-
-ctx.arc(this.x,this.y,2,0,Math.PI*2);
-
-ctx.fillStyle=this.color;
-
-ctx.fill();
+});
 
 }
 
@@ -713,50 +923,60 @@ ctx.fill();
 
 function animate(){
 
-requestAnimationFrame(animate);
+requestAnimationFrame(
+animate
+);
 
-ctx.fillStyle="rgba(0,0,0,0.08)";
-ctx.fillRect(
+ctx.clearRect(
 0,
 0,
 canvas.width,
 canvas.height
 );
 
-fireworks=fireworks.filter(f=>{
+particles.forEach((p,index)=>{
 
-f.draw();
-return f.update();
+p.x+=p.dx;
+p.y+=p.dy;
 
-});
+p.life--;
 
-particles=particles.filter(p=>{
+ctx.beginPath();
 
-p.draw();
-return p.update();
+ctx.arc(
+p.x,
+p.y,
+2,
+0,
+Math.PI*2
+);
+
+ctx.fillStyle=
+p.color;
+
+ctx.fill();
+
+if(p.life<=0){
+
+particles.splice(
+index,
+1
+);
+
+}
 
 });
 
 }
 
-setInterval(()=>{
-
-fireworks.push(
-new Firework()
+setInterval(
+createFirework,
+800
 );
-
-},500);
 
 animate();
 
 </script>
-  song1.mp3
-song2.mp3
-emotional.mp3
-
-img1.jpeg
-...
-img13.jpeg
 
 </body>
 </html>
